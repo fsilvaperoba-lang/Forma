@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FORMA — objetos com personalidade para a sua casa.">
+  <meta name="theme-color" content="#2448ed">
+  <title>FORMA — Objetos para viver</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#catalog" data-i18n="skip">Ir para os produtos</a>
+
+  <div class="announcement" data-i18n="announcement">
+    OBJETOS EXTRAORDINÁRIOS. DIAS COMUNS.
+  </div>
+
+  <header class="header">
+    <a class="logo" href="#" aria-label="FORMA">FORMA<span>®</span></a>
+
+    <nav aria-label="Menu">
+      <a href="#catalog" data-i18n="shop">Loja</a>
+      <a href="#about" data-i18n="about">A FORMA</a>
+    </nav>
+
+    <div class="header-actions">
+      <button id="languageButton" class="language-button" aria-label="Switch to English">
+        EN
+      </button>
+
+      <button id="cartButton" class="cart-button" aria-haspopup="dialog">
+        <span data-i18n="bag">Sacola</span>
+        <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="heroLabel">DESIGN PARA A VIDA REAL</p>
+
+        <h1 id="heroTitle" data-i18n="heroTitle">
+          Sua casa.<br>Mais você.
+        </h1>
+
+        <p class="hero-description" data-i18n="heroDescription">
+          Objetos que saem do óbvio e entram na sua rotina.
+          Feitos para usar, misturar e chamar de seus.
+        </p>
+
+        <a class="button button-dark" href="#catalog">
+          <span data-i18n="explore">Encontre sua próxima peça</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+
+        <div class="hero-note">
+          <span class="small-shape" aria-hidden="true"></span>
+          <span data-i18n="heroNote">Poucas peças. Muita personalidade.</span>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <img
+          src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1400&q=85"
+          alt="Ambiente com móveis e objetos de decoração"
+          fetchpriority="high"
+        >
+        <span class="hero-sticker" aria-hidden="true">GOOD<br>SHAPE.</span>
+        <div class="hero-art-caption">
+          <span data-i18n="collection">A COLEÇÃO DO AGORA</span>
+          <span>01 — 08</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="values-strip" aria-label="Valores da marca">
+      <span data-i18n="value1">DESIGN COM PRESENÇA</span>
+      <span aria-hidden="true">✳</span>
+      <span data-i18n="value2">FEITO PARA FICAR</span>
+      <span aria-hidden="true">✳</span>
+      <span data-i18n="value3">SEU JEITO DE MORAR</span>
+      <span aria-hidden="true">✳</span>
+    </div>
+
+    <section class="catalog section" id="catalog" aria-labelledby="catalogTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow" data-i18n="catalogLabel">ESCOLHAS NADA ÓBVIAS</p>
+          <h2 id="catalogTitle" data-i18n="catalogTitle">Bons encontros.</h2>
+        </div>
+        <p id="resultsCount" class="results-count" aria-live="polite"></p>
+      </div>
+
+      <div class="catalog-toolbar">
+        <div class="filters" role="group" aria-label="Categorias">
+          <button class="filter active" data-category="all" aria-pressed="true" data-i18n="all">Tudo</button>
+          <button class="filter" data-category="lighting" aria-pressed="false" data-i18n="lighting">Iluminação</button>
+          <button class="filter" data-category="objects" aria-pressed="false" data-i18n="objects">Objetos</button>
+          <button class="filter" data-category="furniture" aria-pressed="false" data-i18n="furniture">Móveis</button>
+        </div>
+
+        <div class="catalog-controls">
+          <label class="search-field">
+            <span aria-hidden="true">⌕</span>
+            <span class="sr-only" data-i18n="searchLabel">Buscar produtos</span>
+            <input id="searchInput" type="search" placeholder="Buscar uma peça..." autocomplete="off">
+          </label>
+
+          <label>
+            <span class="sr-only" data-i18n="sortLabel">Ordenar produtos</span>
+            <select id="sortSelect">
+              <option value="featured" data-i18n="featured">Destaques</option>
+              <option value="price-asc" data-i18n="priceAsc">Menor preço</option>
+              <option value="price-desc" data-i18n="priceDesc">Maior preço</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <span aria-hidden="true">⌕</span>
+        <h3 data-i18n="emptyTitle">Nenhuma peça por aqui.</h3>
+        <p data-i18n="emptyDescription">Tente outra busca ou limpe os filtros.</p>
+        <button id="resetFilters" class="button button-dark" data-i18n="reset">Limpar filtros</button>
+      </div>
+    </section>
+
+    <section class="about-section" id="about" aria-labelledby="aboutTitle">
+      <div class="about-graphic" aria-hidden="true">
+        <div class="graphic-circle"></div>
+        <div class="graphic-square"></div>
+        <span>F.</span>
+      </div>
+
+      <div class="about-copy">
+        <p class="eyebrow" data-i18n="aboutLabel">MENOS AUTOMÁTICO. MAIS AUTÊNTICO.</p>
+        <h2 id="aboutTitle" data-i18n="aboutTitle">Morar também<br>é se expressar.</h2>
+        <p data-i18n="aboutDescription">
+          Uma luminária muda a luz. Uma cor muda o clima.
+          Um objeto pode mudar o jeito como você sente um lugar.
+          A FORMA nasce dessas pequenas mudanças.
+        </p>
+        <a class="text-link" href="#catalog" data-i18n="aboutLink">Encontre o seu jeito ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <span class="footer-logo">FORMA®</span>
+      <p data-i18n="footerCopy">Objetos para viver.<br>Do seu jeito.</p>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> FORMA</span>
+      <span data-i18n="demoNotice">Marca fictícia · Projeto de portfólio · Sem compras reais</span>
+    </div>
+  </footer>
+
+  <!-- DETALHES DO PRODUTO -->
+  <dialog id="productDialog" class="product-dialog" aria-labelledby="productDialogTitle">
+    <button class="close-button" data-close="productDialog" aria-label="Fechar">×</button>
+    <div id="productDetails"></div>
+  </dialog>
+
+  <!-- CARRINHO -->
+  <dialog id="cartDialog" class="cart-dialog" aria-labelledby="cartTitle">
+    <div class="dialog-heading">
+      <h2 id="cartTitle" data-i18n="yourBag">Sua sacola.</h2>
+      <button class="close-button static" data-close="cartDialog" aria-label="Fechar">×</button>
+    </div>
+
+    <div id="cartItems" class="cart-items"></div>
+
+    <div id="cartSummary" class="cart-summary">
+      <div><span data-i18n="subtotal">Subtotal</span><strong id="subtotal"></strong></div>
+      <div><span data-i18n="shipping">Entrega demonstrativa</span><strong id="shipping"></strong></div>
+      <div class="total-row"><span data-i18n="total">Total</span><strong id="total"></strong></div>
+
+      <p class="shipping-note" data-i18n="shippingNote">
+        Entrega demonstrativa grátis a partir de R$ 600.
+      </p>
+
+      <button id="checkoutButton" class="button button-blue" data-i18n="checkout">
+        Continuar para o checkout
+      </button>
+
+      <p class="demo-small" data-i18n="checkoutNotice">
+        Simulação de compra. Nenhum pagamento será solicitado.
+      </p>
+    </div>
+  </dialog>
+
+  <!-- CHECKOUT -->
+  <dialog id="checkoutDialog" class="checkout-dialog" aria-labelledby="checkoutTitle">
+    <button class="close-button" data-close="checkoutDialog" aria-label="Fechar">×</button>
+
+    <div id="checkoutContent">
+      <p class="eyebrow" data-i18n="demoCheckout">CHECKOUT DEMONSTRATIVO</p>
+      <h2 id="checkoutTitle" data-i18n="checkoutTitle">Quase em casa.</h2>
+      <p class="checkout-intro" data-i18n="checkoutIntro">
+        Use dados fictícios para testar. As informações não são enviadas nem salvas.
+      </p>
+
+      <form id="checkoutForm">
+        <label>
+          <span data-i18n="name">Nome</span>
+          <input name="customerName" required minlength="2" maxlength="80" autocomplete="off">
+        </label>
+
+        <label>
+          <span data-i18n="email">E-mail</span>
+          <input name="email" type="email" required maxlength="120" autocomplete="off">
+        </label>
+
+        <label>
+          <span data-i18n="address">Endereço fictício</span>
+          <input name="address" required minlength="5" maxlength="160" autocomplete="off">
+        </label>
+
+        <div class="form-grid">
+          <label>
+            <span data-i18n="city">Cidade</span>
+            <input name="city" required minlength="2" maxlength="80" autocomplete="off">
+          </label>
+
+          <label>
+            <span data-i18n="postalCode">CEP</span>
+            <input name="postalCode" required pattern="[0-9]{5}-?[0-9]{3}" placeholder="00000-000" inputmode="numeric" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="checkout-total">
+          <span data-i18n="orderTotal">Total demonstrativo</span>
+          <strong id="checkoutTotal"></strong>
+        </div>
+
+        <button type="submit" class="button button-blue" data-i18n="placeOrder">
+          Concluir simulação
+        </button>
+      </form>
+    </div>
+
+    <div id="successContent" class="success-content" hidden>
+      <span class="success-symbol" aria-hidden="true">✓</span>
+      <h2 id="successTitle" data-i18n="successTitle">Boa escolha.</h2>
+      <p data-i18n="successDescription">
+        Simulação concluída! Nenhum pedido real foi criado e nenhuma cobrança foi realizada.
+      </p>
+      <button class="button button-dark" data-close="checkoutDialog" data-i18n="keepExploring">
+        Continuar explorando
+      </button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
